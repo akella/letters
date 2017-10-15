@@ -7,17 +7,17 @@ var options = {
 };
 
 var observer = new IntersectionObserver(items => {
-  console.log(items);
+  // console.log(items);
   items.forEach(el => {
-  	console.log(el.isIntersecting,el.target,el.intersectionRatio);
-  	if(el.isIntersecting && el.intersectionRatio>0.5) {
-  		PubSub.publish('SecondSectionInView');
+  	// console.log(el.isIntersecting,el.target,el.intersectionRatio);
+  	if(el.isIntersecting && el.intersectionRatio>0.25) {
+  		PubSub.publish('SectionInView',el.target);
   	}
   });
 }, options);
 
-for (var i = 0; i < 4; i++) {
-  observer.observe(targets[1]);
+for (var i = 0; i < targets.length; i++) {
+  observer.observe(targets[i]);
 }
 
 
